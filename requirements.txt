@@ -13,5 +13,4 @@ https://data.pyg.org/whl/torch-1.4.0%2Bcu101/torch_sparse-0.5.1-cp37-cp37m-linux
 https://data.pyg.org/whl/torch-1.4.0%2Bcu101/torch_scatter-2.0.3-cp37-cp37m-linux_x86_64.whl
 torch-cluster==1.5.2
 folium==0.2.1
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz
-
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz
