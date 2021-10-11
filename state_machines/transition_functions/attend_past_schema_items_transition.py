@@ -15,23 +15,27 @@ from state_machines.states.rnn_statelet import RnnStatelet
 
 
 class AttendPastSchemaItemsTransitionFunction(BasicTransitionFunction):
+    """
+
+    Params:
+        predict_start_type_separately :
+            removed from AllenNLP from 0.8.2 -> 0.9.0
+        num_start_types : ``int``, optional (default=None)
+            removed from AllenNLP from 0.8.2 -> 0.9.0
+    """
     def __init__(self,
                  encoder_output_dim: int,
                  action_embedding_dim: int,
                  input_attention: Attention,
                  past_attention: Attention,
                  activation: Activation = Activation.by_name('relu')(),
-                 predict_start_type_separately: bool = True,
-                 num_start_types: int = None,
                  add_action_bias: bool = True,
                  dropout: float = 0.0,
                  num_layers: int = 1) -> None:
         super().__init__(encoder_output_dim=encoder_output_dim,
                          action_embedding_dim=action_embedding_dim,
                          input_attention=input_attention,
-                         num_start_types=num_start_types,
                          activation=activation,
-                         predict_start_type_separately=predict_start_type_separately,
                          add_action_bias=add_action_bias,
                          dropout=dropout,
                          num_layers=num_layers)

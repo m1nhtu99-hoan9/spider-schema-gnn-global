@@ -116,7 +116,6 @@ class SpiderParser(SpiderBase):
                                                                                 action_embedding_dim=action_embedding_dim,
                                                                                 input_attention=input_attention,
                                                                                 past_attention=past_attention,
-                                                                                predict_start_type_separately=False,
                                                                                 add_action_bias=self._add_action_bias,
                                                                                 dropout=dropout,
                                                                                 num_layers=self._decoder_num_layers)
@@ -124,7 +123,6 @@ class SpiderParser(SpiderBase):
             self._transition_function = LinkingTransitionFunction(encoder_output_dim=encoder_output_dim,
                                                                   action_embedding_dim=action_embedding_dim,
                                                                   input_attention=input_attention,
-                                                                  predict_start_type_separately=False,
                                                                   add_action_bias=self._add_action_bias,
                                                                   dropout=dropout,
                                                                   num_layers=self._decoder_num_layers)
