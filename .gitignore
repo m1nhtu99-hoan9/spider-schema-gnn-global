@@ -1,2 +1,5 @@
 __experiment__.py
 requirements-cpu.txt
+
+# IDE-specific
+.idea

@@ -1,12 +1,12 @@
-torch==1.3.0
+--find-links https://pytorch-geometric.com/whl/torch-1.4.0%2Bcu101.html
+torch==1.4.0
 allennlp==0.9.0
 sqlparse
-Unidecode
+spacy==2.1.9
 overrides==3.0.0
-dill==0.2.9
+dill
 nltk==3.2.5
 parsimonious==0.8.0
-spacy
 ordered_set==4.0.2
 torch_geometric
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
