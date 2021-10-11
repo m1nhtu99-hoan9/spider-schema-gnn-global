@@ -86,9 +86,9 @@ class GatedGraphConv(MessagePassing):
 if __name__ == '__main__':
     gcn = GatedGraphConv(input_dim=10, num_timesteps=3, num_edge_types=3)
     data = Data(torch.zeros((5, 10)), edge_index=[
-        torch.tensor([[1,2],[2,3]]),
-        torch.tensor([[1,3],[0,1]]),
-        torch.tensor([[1,4],[2,3]]),
+        torch.tensor([[1, 2], [2, 3]]),
+        torch.tensor([[1, 3], [0, 1]]),
+        torch.tensor([[1, 4], [2, 3]]),
     ])
     output = gcn(data.x, data.edge_index)
 
