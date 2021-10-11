@@ -48,12 +48,6 @@ class AttendPastSchemaItemsTransitionFunction(BasicTransitionFunction):
                   state: GrammarBasedState,
                   max_actions: int = None,
                   allowed_actions: List[Set[int]] = None) -> List[GrammarBasedState]:
-        if self._predict_start_type_separately and not state.action_history[0]:
-            # The wikitables parser did something different when predicting the start type, which
-            # is our first action.  So in this case we break out into a different function.  We'll
-            # ignore max_actions on our first step, assuming there aren't that many start types.
-            return self._take_first_step(state, allowed_actions)
-
         # Taking a step in the decoder consists of three main parts.  First, we'll construct the
         # input to the decoder and update the decoder's hidden state.  Second, we'll use this new
         # hidden state (and maybe other information) to predict an action.  Finally, we will
