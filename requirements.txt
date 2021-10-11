@@ -8,5 +8,9 @@ dill
 nltk==3.2.5
 parsimonious==0.8.0
 ordered_set==4.0.2
-torch_geometric
+torch-geometric==1.4.2
+https://data.pyg.org/whl/torch-1.4.0%2Bcu101/torch_sparse-0.5.1-cp37-cp37m-linux_x86_64.whl
+https://data.pyg.org/whl/torch-1.4.0%2Bcu101/torch_scatter-2.0.3-cp37-cp37m-linux_x86_64.whl
+torch-cluster==1.5.2
+folium==0.2.1
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
