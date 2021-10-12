@@ -1,11 +1,12 @@
 import json
 import logging
 import os
+from pathlib import Path
 from typing import List, Dict
 
 import dill
 from allennlp.common.checks import ConfigurationError
-from allennlp.data import DatasetReader, Tokenizer, TokenIndexer, Field, Instance
+from allennlp.data import DatasetReader, TokenIndexer, Field, Instance
 from allennlp.data.fields import TextField, ProductionRuleField, ListField, IndexField, MetadataField
 from allennlp.data.token_indexers import SingleIdTokenIndexer
 from allennlp.data.tokenizers import WordTokenizer
@@ -29,9 +30,10 @@ class SpiderDatasetReader(DatasetReader):
                  keep_if_unparsable: bool = True,
                  tables_file: str = None,
                  dataset_path: str = 'dataset/database',
+                 cache_dir: str = None,
                  load_cache: bool = True,
                  save_cache: bool = True,
-                 loading_limit = -1):
+                 loading_limit=-1):
         super().__init__(lazy=lazy)
 
         # default spacy tokenizer splits the common token 'id' to ['i', 'd'], we here write a manual fix for that
@@ -47,6 +49,8 @@ class SpiderDatasetReader(DatasetReader):
 
         self._load_cache = load_cache
         self._save_cache = save_cache
+        self._cache_dir: os.PathLike = (Path(cache_dir) if not cache_dir
+                                        else Path(__file__).parents[1].joinpath('experiments'))
         self._loading_limit = loading_limit
 
     @overrides
@@ -57,7 +61,7 @@ class SpiderDatasetReader(DatasetReader):
             raise ConfigurationError(f"Don't know how to read filetype of {file_path}")
 
     def _read_examples_file(self, file_path: str):
-        cache_dir = os.path.join('cache', file_path.split("/")[-1])
+        cache_dir = os.path.join('cache', file_path.split("/")[-1]) if not self._cache_dir else self._cache_dir
 
         if self._load_cache:
             logger.info(f'Trying to load cache from {cache_dir}')
@@ -102,7 +106,7 @@ class SpiderDatasetReader(DatasetReader):
                     # 'T1.name' -> 'singer@name'
                     try:
                         query_tokens = disambiguate_items(ex['db_id'], ex['query_toks_no_value'],
-                                                                self._tables_file, allow_aliases=False)
+                                                          self._tables_file, allow_aliases=False)
                     except Exception as e:
                         # there are two examples in the train set that are wrongly formatted, skip them
                         print(f"error with {ex['query']}")
