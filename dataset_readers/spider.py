@@ -60,6 +60,10 @@ class SpiderDatasetReader(DatasetReader):
         else:
             raise ConfigurationError(f"Don't know how to read filetype of {file_path}")
 
+    @overrides
+    def _get_cache_location_for_file_path(self, file_path: str) -> str:
+        return str(self._cache_dir)
+
     def _read_examples_file(self, file_path: str):
         cache_dir = os.path.join('cache', file_path.split("/")[-1]) if not self._cache_dir else self._cache_dir
 
